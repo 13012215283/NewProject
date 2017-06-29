@@ -132,11 +132,19 @@
 		F40F82111F01F81E004117F8 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				F476462D1F04DF30008B4EBF /* Controller */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		F476462D1F04DF30008B4EBF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				F40F82121F01F84B004117F8 /* MainViewController.swift */,
 				F40F82141F022091004117F8 /* LeftMemuViewController.swift */,
 				F40F82181F022464004117F8 /* RightMenuViewController.swift */,
 			);
-			path = Main;
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,6 +437,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = CZ_Project/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cz.CZ-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -444,6 +453,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = CZ_Project/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cz.CZ-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";

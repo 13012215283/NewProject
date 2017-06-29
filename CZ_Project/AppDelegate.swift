@@ -17,7 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         //初始页面
         self.window    = UIWindow(frame: UIScreen.main.bounds)
-        let navigation = UINavigationController(rootViewController: MainViewController())
+        
+        //创建主视图框架
+        let mainViewController = MainViewController()
+        
+        mainViewController.setMenuViewController(LeftMemuViewController(), withDerectionType: DirectionType.MainMenuDirectionLeft)
+        mainViewController.setMenuViewController(RightMenuViewController(), withDerectionType: DirectionType.MainMenuDirectionRight)
+        
+        let navigation = UINavigationController(rootViewController: mainViewController)
         self.window?.rootViewController = navigation;
         self.window?.makeKeyAndVisible()
 
