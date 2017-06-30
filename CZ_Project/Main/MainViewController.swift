@@ -31,10 +31,10 @@ extension MainViewController {
         switch type { //判断目录控制器类型
             
         case .MainMenuDirectionLeft: //左边界
-            self.setLeftMenuViewController(menuViewController)
+            setLeftMenuViewController(menuViewController)
             
         case .MainMenuDirectionRight: //右边界
-            self.setRightMenuViewController(menuViewController)
+            setRightMenuViewController(menuViewController)
             
         }
     }
@@ -43,27 +43,18 @@ extension MainViewController {
     ///
     /// - Parameter contentViewController: 主内容视图控制器
     func setContenViewController(_ contentViewController : UIViewController) {
-        
-        if let contentView = contentView { //左边视图已经被设置过了
-            
+        addChildViewController(contentViewController)
+        if let _ = contentView { //左边视图已经被设置过了
             //将原来的目录视图删除，并添加新的目录视图
-            contentViewController.view.frame = contentView.frame
-            contentView.removeFromSuperview();
-            self.view.addSubview(contentViewController.view)
-            self.contentView = contentViewController.view
-            
-        }else { //左边视图为nil，还没有被设置过
-            
-            self.contentView = contentViewController.view
-            self.contentView?.frame = self.view.frame
-            self.view.addSubview(self.contentView!)
+            contentView?.removeFromSuperview();
             
         }
-
+        view.addSubview(contentViewController.view)
+        contentView = contentViewController.view
+        contentView?.frame = view.frame
         
     }
-    
-    
+
 }
 
 // MARK: - ****** 定义全局常量 ******
@@ -72,8 +63,14 @@ extension MainViewController {
 let leftMenuSize = CGSize(width: CZ_ScreenWidth*0.618, height: CZ_ScreenHeight)
 let rightMenuSize = CGSize(width: CZ_ScreenWidth*0.618, height: CZ_ScreenHeight)
 
+/// 左边界视图插束长
+let converWidth = CZ_ScreenWidth/3.0
 
-/// 主控制器类
+/// 右边界视图初始x坐标
+let leftMenuViewX = (-CZ_ScreenWidth + converWidth)
+
+
+// MARK: - ****** 主控制器类 ******
 class MainViewController: UIViewController,UIGestureRecognizerDelegate {
 
     // MARK: - ****** 定义属性 ******
@@ -107,27 +104,61 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.blue
+        view.backgroundColor    = UIColor.blue
         
         //初始化手势并添加
-        self.leftPanGestureRecognaizer          = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(MainViewController.handleLeftEdgeGesture(_:)))
-        self.leftPanGestureRecognaizer.edges    = UIRectEdge.left
-        self.leftPanGestureRecognaizer.delegate = self
-        self.view.addGestureRecognizer(self.leftPanGestureRecognaizer)
+        leftPanGestureRecognaizer          = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(MainViewController.handleLeftEdgeGesture(_:)))
+        leftPanGestureRecognaizer.edges    = UIRectEdge.left
+        leftPanGestureRecognaizer.delegate = self
+        view.addGestureRecognizer(leftPanGestureRecognaizer)
         
-        self.rightPanGestureRecognaizer          = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(MainViewController.handleRightEdgeGesture(_:)))
-        self.rightPanGestureRecognaizer.edges    = UIRectEdge.right
-        self.rightPanGestureRecognaizer.delegate = self
-        self.view.addGestureRecognizer(self.rightPanGestureRecognaizer)
+        rightPanGestureRecognaizer          = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(MainViewController.handleRightEdgeGesture(_:)))
+        rightPanGestureRecognaizer.edges    = UIRectEdge.right
+        rightPanGestureRecognaizer.delegate = self
+        view.addGestureRecognizer(rightPanGestureRecognaizer)
         
-        self.panGestureRecognaizer           = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-        self.panGestureRecognaizer.delegate  = self
-        self.panGestureRecognaizer.isEnabled = false //设置拖拽手势开始时不开启，防止和边界的两个手势冲突
-        self.view.addGestureRecognizer(self.panGestureRecognaizer)
+        panGestureRecognaizer           = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+        panGestureRecognaizer.delegate  = self
+        panGestureRecognaizer.isEnabled = false //设置拖拽手势开始时不开启，防止和边界的两个手势冲突
+        view.addGestureRecognizer(panGestureRecognaizer)
     }
     
     
     // MARK: - ****** 私有方法 ******
+    
+    // MARK: 添加视图控制器
+    /// 设置左边界目录控制器
+    ///
+    /// - Parameter leftMenuViewController: 左边界控制器
+    fileprivate func setLeftMenuViewController(_ leftMenuViewController : UIViewController) {
+        addChildViewController(leftMenuViewController)
+        
+        if let leftMenuView = leftMenuView { //左边视图已经被设置过了
+            //将原来的目录视图删除
+            leftMenuView.removeFromSuperview();
+        }
+    
+        view.insertSubview(leftMenuViewController.view, at: 0)
+        leftMenuView = leftMenuViewController.view
+        leftMenuView?.frame.origin =  CGPoint(x: leftMenuViewX, y: 0)
+    }
+    
+    /// 设置右边界目录控制器
+    ///
+    /// - Parameter RightMenuViewController: 右边界控制器
+    fileprivate func setRightMenuViewController(_ rightMenuViewController : UIViewController) {
+        addChildViewController(rightMenuViewController)
+        if let rightMenuView = rightMenuView { //左边视图已经被设置过了
+            //将原来的目录视图删除
+            rightMenuView.removeFromSuperview();
+            
+        }
+        view.addSubview(rightMenuViewController.view)
+        rightMenuView = rightMenuViewController.view
+        rightMenuView?.frame.origin = CGPoint(x: -rightMenuViewController.view.frame.size.width, y: 0)
+
+    }
+
     
     // MARK: 手势处理方法
     
@@ -137,41 +168,22 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
     @objc fileprivate func handleLeftEdgeGesture(_ leftEdgeGesture : UIScreenEdgePanGestureRecognizer) {
         //获取坐标变化值和速度
         let traslation : CGPoint = leftEdgeGesture.translation(in: leftEdgeGesture.view)
-//        let velocity   : CGPoint = leftEdgeGesture.velocity(in: leftEdgeGesture.view)
         
         //判断手势状态
         switch leftEdgeGesture.state {
             
         case .began:     //手势开始状态
             
-            self.menuCurrentPosistion = self.leftMenuView?.layer.position
+            menuCurrentPosistion = leftMenuView?.frame.origin
             
-        case .changed:  //手势变化状态
+        case .changed:   //手势变化状态
             
-            guard let menuCurrentPosistion = menuCurrentPosistion else {
-                break
-            }
-            let newPositionX = (menuCurrentPosistion.x + traslation.x) < leftMenuSize.width/2 ? (menuCurrentPosistion.x + traslation.x) :  leftMenuSize.width/2
-            self.leftMenuView?.layer.position.x = newPositionX
+           leftMenuViewAnimation(traslation: traslation)
             
-        case .ended:   //手势结束
+        case .ended:     //手势结束
             
-            self.menuCurrentPosistion = self.leftMenuView?.layer.position
-            
-            guard let menuCurrentPosistion = menuCurrentPosistion else {
-                break
-            }
-            
-            if menuCurrentPosistion.x >= leftMenuSize.width/4 {     //左边界目录视图移动的位置达到最大值，不操作
-                break;
-            }
-            else if menuCurrentPosistion.x < leftMenuSize.width/4 { //左边界目录视图移动的位置小于自身宽度的一半，弹回
-                
-            }
-            else if menuCurrentPosistion.x > leftMenuSize.width/4 { //左边界目录视图移动的位置大于自身宽度的一半，弹出
-                
-            }
-            
+           leftMenuViewHadFinishedMove()
+
         default:
             break
         }
@@ -181,6 +193,8 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
     ///
     /// - Parameter rightEdgeGesture: 手势
     @objc fileprivate func handleRightEdgeGesture(_ rightEdgeGesture : UIScreenEdgePanGestureRecognizer) {
+        
+        
         
     }
     
@@ -196,71 +210,106 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
             
         case .began:     //手势开始状态
             
-            self.menuCurrentPosistion = self.leftMenuView?.layer.position
+            menuCurrentPosistion = leftMenuView?.frame.origin
             
-        case .changed:  //手势变化状态
+        case .changed:   //手势变化状态
             
-            guard let menuCurrenPosistion = menuCurrentPosistion else {
-                break
-            }
-            let newPositionX = (menuCurrenPosistion.x + traslation.x) < leftMenuSize.width/2 ? (menuCurrenPosistion.x + traslation.x) :  leftMenuSize.width/2
-            self.leftMenuView?.layer.position.x = newPositionX
+            leftMenuViewAnimation(traslation: traslation)
             
-        case .ended:
-            break
-        default:
-            break
+        default:         //手势结束
+            leftMenuViewHadFinishedMove()
         }
 
-        print("panGresture action")
+//        print("panGresture action")
+    }
+    
+    
+    // MARK: - ****** 目录动画 ******
+    /// 关闭左边界目录
+    fileprivate func closeLeftMenuView() {
+        
+        let duration = (leftMenuView!.frame.maxX - converWidth)/CZ_ScreenWidth * 1.5
+
+        UIView.animate(withDuration: TimeInterval(duration), delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: {
+            self.leftMenuView!.frame.origin.x = leftMenuViewX
+            self.contentView?.frame.origin.x  = 0
+        }){ (finished: Bool) in
+            self.panGestureRecognaizer.isEnabled = false
+        }
+
+    }
+    
+    /// 开启左边界目录
+    fileprivate func showLeftMenuview() {
+        
+        let duration = (leftMenuSize.width - leftMenuView!.frame.maxX)/CZ_ScreenWidth * 1.5
+        
+        UIView.animate(withDuration: TimeInterval(duration), delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: {
+            self.leftMenuView!.frame.origin.x = -self.leftMenuView!.frame.size.width + leftMenuSize.width
+            self.contentView?.frame.origin.x  = leftMenuSize.width
+        }){ (finished: Bool) in
+            self.leftMenuViewShowDampingAnimation(duration: TimeInterval(duration))
+            self.panGestureRecognaizer.isEnabled = true
+        }
+    }
+    
+    /// 左边视图弹出动画完成，添加阻尼动画
+    fileprivate func leftMenuViewShowDampingAnimation(duration : TimeInterval) {
+        
+        UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 2, options: UIViewAnimationOptions.curveLinear, animations: {
+            
+            self.leftMenuView!.frame.origin.x = self.leftMenuView!.frame.origin.x
+            
+        }){ (finished: Bool) in
+            
+        }
         
     }
     
-    // MARK: 添加视图控制器
-    /// 设置左边界目录控制器
+    /// 左边界目录位移动画
     ///
-    /// - Parameter leftMenuViewController: 左边界控制器
-    fileprivate func setLeftMenuViewController(_ leftMenuViewController : UIViewController) {
-        self.addChildViewController(leftMenuViewController)
-        if let leftMenuView = leftMenuView { //左边视图已经被设置过了
-            
-            //将原来的目录视图删除，并添加新的目录视图
-            leftMenuViewController.view.frame = leftMenuView.frame
-            leftMenuView.removeFromSuperview();
-            self.view.addSubview(leftMenuViewController.view)
-            self.leftMenuView = leftMenuViewController.view
-            
-        }else { //左边视图为nil，还没有被设置过
-            self.leftMenuView = leftMenuViewController.view
-            self.leftMenuView?.frame = CGRect(x: -leftMenuSize.width, y: 0, width: leftMenuSize.width, height: leftMenuSize.height)
-            self.view.addSubview(self.leftMenuView!)
+    /// - Parameter traslation: 变化量
+    fileprivate func leftMenuViewAnimation(traslation : CGPoint) {
+        
+        guard let menuCurrentPosistion = menuCurrentPosistion, let leftMenuView = leftMenuView else {
+            return
         }
-
+       
+        //左边界目录的新x坐标
+        let newPositionX = (menuCurrentPosistion.x + leftMenuView.frame.size.width + traslation.x) < leftMenuSize.width ? (menuCurrentPosistion.x + traslation.x) : (-leftMenuView.frame.size.width + leftMenuSize.width)
+        leftMenuView.frame.origin.x = newPositionX > leftMenuViewX ? newPositionX : leftMenuViewX
+        
+        //计算内容主视图的x坐标
+        let newContentX = (newPositionX - leftMenuViewX)/(leftMenuSize.width - converWidth) * leftMenuSize.width
+        contentView?.frame.origin.x = newContentX > 0 ? newContentX : 0
     }
     
-    /// 设置右边界目录控制器
-    ///
-    /// - Parameter RightMenuViewController: 右边界控制器
-    fileprivate func setRightMenuViewController(_ rightMenuViewController : UIViewController) {
-         self.addChildViewController(rightMenuViewController)
-        if let rightMenuView = rightMenuView { //左边视图已经被设置过了
-            
-            //将原来的目录视图删除，并添加新的目录视图
-            rightMenuViewController.view.frame = rightMenuView.frame
-            rightMenuView.removeFromSuperview();
-            self.view.addSubview(rightMenuViewController.view)
-            self.rightMenuView = rightMenuViewController.view
-            
-        }else { //左边视图为nil，还没有被设置过
-            
-            self.rightMenuView = rightMenuViewController.view
-            self.rightMenuView?.frame = CGRect(x: CZ_ScreenWidth, y: 0, width: rightMenuSize.width, height: rightMenuSize.height)
-            self.view.addSubview(self.rightMenuView!)
-            
+    /// 左边界目录位移完成(拖拽手势完成后)
+    fileprivate func leftMenuViewHadFinishedMove() {
+        
+        menuCurrentPosistion = leftMenuView?.frame.origin
+        
+        guard let contentView = contentView else {
+            return
         }
 
+        if contentView.frame.origin.x == 0 {                            //左边界目录视图移动的位置达到最小值，关闭拖拽手势
+            panGestureRecognaizer.isEnabled = false
+            
+        }
+        else if contentView.frame.origin.x >= leftMenuSize.width {      //左边界目录视图移动的位置达到最大值，开启拖拽手势
+            panGestureRecognaizer.isEnabled = true
+            
+        }
+        else if contentView.frame.origin.x < leftMenuSize.width/2.0 {   //左边界目录视图移动的位置小于自身宽度的一半，弹回
+            closeLeftMenuView()
+        }
+        else if contentView.frame.origin.x >= leftMenuSize.width/2.0 {  //左边界目录视图移动的位置大于自身宽度的一半，弹出
+            showLeftMenuview()
+        }
+
+        
     }
-    
 
     
 }

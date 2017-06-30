@@ -14,7 +14,7 @@ class RightMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.white
         
     }
    

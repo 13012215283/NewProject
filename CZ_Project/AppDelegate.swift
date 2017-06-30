@@ -23,9 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         mainViewController.setMenuViewController(LeftMemuViewController(), withDerectionType: DirectionType.MainMenuDirectionLeft)
         mainViewController.setMenuViewController(RightMenuViewController(), withDerectionType: DirectionType.MainMenuDirectionRight)
-        
-        let navigation = UINavigationController(rootViewController: mainViewController)
-        self.window?.rootViewController = navigation;
+        mainViewController.setContenViewController(MainNavigationViewController())
+        self.window?.rootViewController = mainViewController;
         self.window?.makeKeyAndVisible()
 
         return true
