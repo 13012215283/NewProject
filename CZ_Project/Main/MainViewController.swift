@@ -69,6 +69,9 @@ let converWidth = CZ_ScreenWidth/3.0
 /// 右边界视图初始x坐标
 let leftMenuViewX = (-CZ_ScreenWidth + converWidth)
 
+/// 弹簧长度
+let dampingW : CGFloat = 10.0
+
 
 // MARK: - ****** 主控制器类 ******
 class MainViewController: UIViewController,UIGestureRecognizerDelegate {
@@ -219,8 +222,7 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
         default:         //手势结束
             leftMenuViewHadFinishedMove()
         }
-
-//        print("panGresture action")
+        
     }
     
     
@@ -242,29 +244,51 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
     /// 开启左边界目录
     fileprivate func showLeftMenuview() {
         
-        let duration = (leftMenuSize.width - leftMenuView!.frame.maxX)/CZ_ScreenWidth * 1.5
-        
-        UIView.animate(withDuration: TimeInterval(duration), delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: {
-            self.leftMenuView!.frame.origin.x = -self.leftMenuView!.frame.size.width + leftMenuSize.width
-            self.contentView?.frame.origin.x  = leftMenuSize.width
+        let duration = (leftMenuSize.width - leftMenuView!.frame.maxX + dampingW)/CZ_ScreenWidth * 1.5
+        UIView.animate(withDuration: TimeInterval(duration), delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            self.leftMenuView!.frame.origin.x = -self.leftMenuView!.frame.size.width + leftMenuSize.width + dampingW
+            //计算内容主视图的x坐标
+            let newContentX = (-self.leftMenuView!.frame.size.width + leftMenuSize.width + dampingW - leftMenuViewX)/(leftMenuSize.width - converWidth + dampingW) * (leftMenuSize.width + dampingW)
+            self.contentView?.frame.origin.x  = newContentX
         }){ (finished: Bool) in
-            self.leftMenuViewShowDampingAnimation(duration: TimeInterval(duration))
-            self.panGestureRecognaizer.isEnabled = true
+            self.leftMenuViewShowDampingAnimation()
         }
     }
     
     /// 左边视图弹出动画完成，添加阻尼动画
-    fileprivate func leftMenuViewShowDampingAnimation(duration : TimeInterval) {
+    fileprivate func leftMenuViewShowDampingAnimation() {
+        let duration = dampingW / CZ_ScreenWidth * 2
         
-        UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 2, options: UIViewAnimationOptions.curveLinear, animations: {
+        UIView.animate(withDuration: TimeInterval(duration), delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             
-            self.leftMenuView!.frame.origin.x = self.leftMenuView!.frame.origin.x
+            self.leftMenuView!.frame.origin.x = -self.leftMenuView!.frame.size.width + leftMenuSize.width
+            let newContentX = (-self.leftMenuView!.frame.size.width + leftMenuSize.width - leftMenuViewX)/(leftMenuSize.width - converWidth + dampingW) * (leftMenuSize.width + dampingW)
+            self.contentView?.frame.origin.x  = newContentX
             
         }){ (finished: Bool) in
-            
+            self.panGestureRecognaizer.isEnabled = true
         }
-        
     }
+    
+    /// 左边视图弹出动画完成，添加回弹阻尼动画
+    fileprivate func leftMenuViewShowReboundDampingAnimation() {
+        //计算超出最大限制的距离
+//        let outDistance = leftMenuView!.frame.origin.x - (-leftMenuView!.frame.size.width + leftMenuSize.width)
+        
+        let duration = dampingW / CZ_ScreenWidth * 2
+        
+        UIView.animate(withDuration: TimeInterval(duration), delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            
+            self.leftMenuView!.frame.origin.x = -self.leftMenuView!.frame.size.width + leftMenuSize.width - dampingW
+            let newContentX = (-self.leftMenuView!.frame.size.width + leftMenuSize.width - dampingW - leftMenuViewX)/(leftMenuSize.width - converWidth + dampingW) * (leftMenuSize.width + dampingW)
+            self.contentView?.frame.origin.x  = newContentX
+            
+        }){ (finished: Bool) in
+            self.leftMenuViewShowDampingAnimation()
+        }
+    }
+    
+    
     
     /// 左边界目录位移动画
     ///
@@ -276,11 +300,11 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
         }
        
         //左边界目录的新x坐标
-        let newPositionX = (menuCurrentPosistion.x + leftMenuView.frame.size.width + traslation.x) < leftMenuSize.width ? (menuCurrentPosistion.x + traslation.x) : (-leftMenuView.frame.size.width + leftMenuSize.width)
+        let newPositionX = (menuCurrentPosistion.x + leftMenuView.frame.size.width + traslation.x) < (leftMenuSize.width + dampingW) ? (menuCurrentPosistion.x + traslation.x) : (-leftMenuView.frame.size.width + leftMenuSize.width + dampingW)
         leftMenuView.frame.origin.x = newPositionX > leftMenuViewX ? newPositionX : leftMenuViewX
         
         //计算内容主视图的x坐标
-        let newContentX = (newPositionX - leftMenuViewX)/(leftMenuSize.width - converWidth) * leftMenuSize.width
+        let newContentX = (newPositionX - leftMenuViewX)/(leftMenuSize.width - converWidth + dampingW) * (leftMenuSize.width + dampingW)
         contentView?.frame.origin.x = newContentX > 0 ? newContentX : 0
     }
     
@@ -297,15 +321,17 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
             panGestureRecognaizer.isEnabled = false
             
         }
-        else if contentView.frame.origin.x >= leftMenuSize.width {      //左边界目录视图移动的位置达到最大值，开启拖拽手势
-            panGestureRecognaizer.isEnabled = true
-            
-        }
         else if contentView.frame.origin.x < leftMenuSize.width/2.0 {   //左边界目录视图移动的位置小于自身宽度的一半，弹回
             closeLeftMenuView()
+            
         }
-        else if contentView.frame.origin.x >= leftMenuSize.width/2.0 {  //左边界目录视图移动的位置大于自身宽度的一半，弹出
+        else if contentView.frame.origin.x >= leftMenuSize.width/2.0 && contentView.frame.origin.x <= leftMenuSize.width{ //左边界目录视图移动的位置大于自身一半且小于最大值，弹出
             showLeftMenuview()
+            
+        }
+        else if contentView.frame.origin.x > leftMenuSize.width {       //左边界目录视图移动的位置大于最大值，回弹到最大值
+            leftMenuViewShowReboundDampingAnimation()
+            
         }
 
         
