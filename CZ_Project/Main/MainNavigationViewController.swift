@@ -17,9 +17,6 @@ class MainNavigationViewController: UINavigationController {
         imageView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         view.addSubview(imageView)
         
-        view.layer.shadowOpacity = 0.8
-        view.layer.shadowRadius  = 5
-        view.layer.shadowColor   = UIColor.black.cgColor
     }
 
     override func didReceiveMemoryWarning() {

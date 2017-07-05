@@ -19,7 +19,5 @@ class LeftMemuViewController: UIViewController {
         view.addSubview(imageView)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touch")
-    }
+  
 }

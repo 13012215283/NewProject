@@ -15,7 +15,11 @@ class RightMenuViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.blue
-        
+        view.backgroundColor = UIColor.white
+        let imageView = UIImageView(image: UIImage(named: "gandam3"))
+        imageView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        view.addSubview(imageView)
+
     }
    
 }
