@@ -56,10 +56,19 @@ extension MainViewController {
         contentView?.layer.shadowOpacity = 0.8
         contentView?.layer.shadowRadius  = 5
         contentView?.layer.shadowColor   = UIColor.black.cgColor
-
+        
+        //添加手势
+        contentView?.addGestureRecognizer(tapGestureRecognaizer)
+        
+        //设置主控制器
+        mainViewController   = contentViewController
+        
         if let rightMenuView = rightMenuView { //右边边界已经设置过了，切换图层
             view.bringSubview(toFront: rightMenuView)
         }
+
+        //给动画的图片视图附上图片
+        animationImageView.image = getImageWithView(contentView!)
     }
 
 }
@@ -95,22 +104,32 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
     // MARK: - ****** 定义属性 ******
 
     // MARK: 私有属性
+    
+    /// 内容主视图控制器
+    fileprivate var mainViewController    : UIViewController?
+    
     /// 左目录视图
-    fileprivate var leftMenuView  : UIView?
+    fileprivate var leftMenuView          : UIView?
     
     /// 右目录视图
-    fileprivate var rightMenuView : UIView?
+    fileprivate var rightMenuView         : UIView?
     
     /// 内容主视图
-    fileprivate var contentView   : UIView?
+    fileprivate var contentView           : UIView?
     
     /// 目录视图当前的位置
-    fileprivate var menuCurrentPosistion : CGPoint?
+    fileprivate var menuCurrentPosistion  : CGPoint?
     
     /// 当前目录视图显示类型
-    fileprivate var currentDirection : DirectionType?
-
+    fileprivate var currentDirection      : DirectionType?
     
+    
+    /// 用于动画假象的图片视图
+    fileprivate lazy var animationImageView         : UIImageView                       = {
+        let imageView = UIImageView(frame: self.view.frame)
+        return imageView
+    }()
+
     /// 左边界手势
     fileprivate lazy var leftPanGestureRecognaizer  : UIScreenEdgePanGestureRecognizer  = {
         //初始化手势并添加
@@ -154,7 +173,6 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
         
         view.addGestureRecognizer(panGestureRecognaizer)
         
-        view.addGestureRecognizer(tapGestureRecognaizer)
     }
     
     
@@ -175,6 +193,11 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
         view.insertSubview(leftMenuViewController.view, at: 0)
         leftMenuView = leftMenuViewController.view
         leftMenuView?.frame.origin =  CGPoint(x: leftMenuViewX, y: 0)
+        
+        //设置代理
+        if let leftMenuViewController = leftMenuViewController as? LeftMemuViewController {
+            leftMenuViewController.cz_delegate = self
+        }
     }
     
     /// 设置右边界目录控制器
@@ -286,6 +309,7 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
     ///
     /// - Parameter tapGesture: 手势
     @objc fileprivate func handleTapGesture(_ tapGesture : UITapGestureRecognizer) {
+        
         guard let currentDirection = currentDirection else {
             return
         }
@@ -295,6 +319,7 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
         else if currentDirection == DirectionType.MainMenuDirectionRight {  //关闭右边界视图
             closeRightMenuViewWithDampingAnimation()
         }
+        
     }
     
     // MARK: - ****** 左边界目录动画 ******
@@ -551,8 +576,8 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
         UIView.animate(withDuration: TimeInterval(duration), delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             
             self.rightMenuView!.frame.origin.x = rightMenuViewMinX + rightDampingW
-            let newContentX = -(CZ_ScreenWidth - self.rightMenuView!.frame.origin.x)/(CZ_ScreenWidth - rightMenuViewMinX + dampingW) * (CZ_ScreenWidth - rightMenuViewMinX - converWidth - dampingW)
-            self.contentView?.frame.origin.x  = newContentX
+            let newContentX                    = -(CZ_ScreenWidth - self.rightMenuView!.frame.origin.x)/(CZ_ScreenWidth - rightMenuViewMinX + dampingW) * (CZ_ScreenWidth - rightMenuViewMinX - converWidth - dampingW)
+            self.contentView?.frame.origin.x   = newContentX
             
         }){ (finished: Bool) in
             self.rightMenuViewShowDampingAnimation()
@@ -560,10 +585,70 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
     }
 
     
+    
+    // MARK: - ****** 对View截图 ******
+    
+    /// 传入View，对View截图并返回图片
+    ///
+    /// - Parameter catchView: 需要截图的View
+    /// - Returns: View的截图
+    fileprivate func getImageWithView(_ catchView : UIView) -> UIImage {
+        
+        //开启图片上下文
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, true, UIScreen.main.scale)
+        
+        //获取图片上下文
+        let context = UIGraphicsGetCurrentContext()
+        
+        //把layer渲染到图片上下文
+        catchView.layer.render(in: context!)
+        
+        //获取图片
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        
+        //关闭图片上下文
+        UIGraphicsEndImageContext()
+        
+        return image!
+        
+    }
 }
 
 
-
+// MARK: - LeftMemuViewControllerDelegate
+extension MainViewController : LeftMemuViewControllerDelegate {
+    
+    /// 代理方法，切换主内容视图
+    ///
+    /// - Parameter index: tag
+    func changeContentViewController(withIndex index: NSInteger) {
+        panGestureRecognaizer.isEnabled      = false
+        animationImageView.frame = contentView!.frame
+        view.addSubview(animationImageView)
+        
+        view.sendSubview(toBack: contentView!)
+        contentView?.frame.origin = CGPoint(x: 0, y: 0)
+        
+        if let mainViewController = mainViewController as? ContentTabBarController {
+            mainViewController.selectedIndex = (index == 1) ? 0 :  1
+        }
+        
+//        UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: { 
+        
+//            self.leftMenuView?.frame.origin.x      = -CZ_ScreenWidth
+//            self.animationImageView.frame.origin.x = CZ_ScreenWidth
+//            
+//        }){ (Bool) in
+//            self.leftMenuView?.frame.origin = CGPoint(x: leftMenuViewX, y: 0)
+//            self.view.sendSubview(toBack: self.leftMenuView!)
+//            self.animationImageView.removeFromSuperview()
+//            self.leftPanGestureRecognaizer.isEnabled  = true
+//            self.rightPanGestureRecognaizer.isEnabled = true
+//        
+//        }
+    }
+    
+}
 
 
 

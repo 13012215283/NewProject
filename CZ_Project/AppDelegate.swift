@@ -21,9 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //创建主视图框架
         let mainViewController = MainViewController()
         
+        //创建tabBar视图
+        let tabBarController   = ContentTabBarController()
+        
+        //设置主视图
         mainViewController.setMenuViewController(LeftMemuViewController(), withDerectionType: DirectionType.MainMenuDirectionLeft)
         mainViewController.setMenuViewController(RightMenuViewController(), withDerectionType: DirectionType.MainMenuDirectionRight)
-        mainViewController.setContenViewController(MainNavigationViewController())
+        mainViewController.setContenViewController(tabBarController)
+        
+        //给window添加根视图
         self.window?.rootViewController = mainViewController;
         self.window?.makeKeyAndVisible()
 

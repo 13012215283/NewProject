@@ -9,14 +9,24 @@
 import UIKit
 
 class MainNavigationViewController: UINavigationController {
+    
+    lazy var testVC1 : TestViewController1 = {
+        let vc = TestViewController1()
+        return vc
+    }()
+    
+    lazy var testVC2 : TextViewController2 = {
+        let vc = TextViewController2()
+        return vc
+    }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.yellow
-        let imageView = UIImageView(image: UIImage(named: "gundam2"))
-        imageView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
-        view.addSubview(imageView)
-        
+        view.backgroundColor = UIColor.blue
+        addChildViewController(testVC1)
+        addChildViewController(testVC2)
+        setViewControllers([testVC1], animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,6 +34,17 @@ class MainNavigationViewController: UINavigationController {
         
     }
     
+    
+    func showTestVC1() {
+        setViewControllers([testVC1], animated: false)
+        print(viewControllers.count)
+      
+    }
+    
+    func showTestVC2() {
+        setViewControllers([testVC2], animated: false)
+         print(viewControllers.count)
+    }
 
     /*
     // MARK: - Navigation
