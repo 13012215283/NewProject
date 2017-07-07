@@ -17,7 +17,8 @@ class TestViewController1: UIViewController {
         imageView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         view.addSubview(imageView)
         tabBarItem.title = "1"
-        
+        edgesForExtendedLayout = UIRectEdge()
+        navigationController?.navigationBar.isTranslucent = false
         // Do any additional setup after loading the view.
     }
 

@@ -42,7 +42,7 @@ extension MainViewController {
     /// 设置主内容视图控制器
     ///
     /// - Parameter contentViewController: 主内容视图控制器
-    func setContenViewController(_ contentViewController : UIViewController) {
+    func setContenViewController(_ contentViewController : UITabBarController) {
         addChildViewController(contentViewController)
         if let _ = contentView { //内容视图已经被设置过了
             //将原来的目录视图删除，并添加新的目录视图
@@ -68,9 +68,12 @@ extension MainViewController {
         }
 
         //给动画的图片视图附上图片
-        animationImageView.image = getImageWithView(contentView!)
+        if let  selectedViewController = mainViewController?.selectedViewController as? UINavigationController {
+            animationImageView.image = getImageWithView(selectedViewController.view)
+        }
+        
+        
     }
-
 }
 
 // MARK: - ****** 定义全局常量 ******
@@ -104,9 +107,9 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
     // MARK: - ****** 定义属性 ******
 
     // MARK: 私有属性
-    
+    fileprivate var myLayer : CALayer?
     /// 内容主视图控制器
-    fileprivate var mainViewController    : UIViewController?
+    fileprivate var mainViewController    : UITabBarController?
     
     /// 左目录视图
     fileprivate var leftMenuView          : UIView?
@@ -124,9 +127,13 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
     fileprivate var currentDirection      : DirectionType?
     
     
+    
     /// 用于动画假象的图片视图
     fileprivate lazy var animationImageView         : UIImageView                       = {
         let imageView = UIImageView(frame: self.view.frame)
+        imageView.layer.shadowOpacity = self.contentView!.layer.shadowOpacity
+        imageView.layer.shadowRadius  = self.contentView!.layer.shadowRadius
+        imageView.layer.shadowColor   = self.contentView!.layer.shadowColor
         return imageView
     }()
 
@@ -166,7 +173,7 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
     // MARK: - ****** 生命周期 ******
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.addGestureRecognizer(leftPanGestureRecognaizer)
         
         view.addGestureRecognizer(rightPanGestureRecognaizer)
@@ -184,7 +191,7 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
     /// - Parameter leftMenuViewController: 左边界控制器
     fileprivate func setLeftMenuViewController(_ leftMenuViewController : UIViewController) {
         addChildViewController(leftMenuViewController)
-        
+
         if let leftMenuView = leftMenuView { //左边视图已经被设置过了
             //将原来的目录视图删除
             leftMenuView.removeFromSuperview();
@@ -595,23 +602,22 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
     fileprivate func getImageWithView(_ catchView : UIView) -> UIImage {
         
         //开启图片上下文
-        UIGraphicsBeginImageContextWithOptions(view.frame.size, true, UIScreen.main.scale)
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, true, 0)
         
-        //获取图片上下文
-        let context = UIGraphicsGetCurrentContext()
-        
-        //把layer渲染到图片上下文
-        catchView.layer.render(in: context!)
+        //绘制层次
+        catchView.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
         
         //获取图片
         let image = UIGraphicsGetImageFromCurrentImageContext()
         
         //关闭图片上下文
         UIGraphicsEndImageContext()
-        
+       
+    
         return image!
         
     }
+
 }
 
 
@@ -627,6 +633,7 @@ extension MainViewController : LeftMemuViewControllerDelegate {
         view.addSubview(animationImageView)
         
         view.sendSubview(toBack: contentView!)
+        view.bringSubview(toFront: rightMenuView!)
         contentView?.frame.origin = CGPoint(x: 0, y: 0)
         
         if let mainViewController = mainViewController as? ContentTabBarController {
