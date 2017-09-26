@@ -68,11 +68,7 @@ extension MainViewController {
         }
 
         //给动画的图片视图附上图片
-        if let  selectedViewController = mainViewController?.selectedViewController as? UINavigationController {
-            DispatchQueue.main.async {
-                self.animationImageView.image = self.getImageWithView(selectedViewController.view)
-            }
-        }
+        self.resetAnimationImageView()
         
         
     }
@@ -516,7 +512,7 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
     /// 关闭右边界目录
     fileprivate func closeRightMenuView() {
         
-        let duration = (rightMenuViewMaxX - rightMenuView!.frame.origin.x)/CZ_ScreenWidth * 1.5 * (CZ_ScreenWidth - rightMenuViewMinX) / (CZ_ScreenWidth - rightMenuViewMinX + converWidth)
+        let duration = (rightMenuViewMaxX - rightMenuView!.frame.origin.x)/CZ_ScreenWidth * 1.5 * (CZ_ScreenWidth - rightMenuViewMinX) / (CZ_ScreenWidth - rightMenuViewMinX + converWidth) * 0.5
         
         UIView.animate(withDuration: TimeInterval(duration), delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: {
             self.rightMenuView!.frame.origin.x = rightMenuViewMaxX
@@ -592,7 +588,15 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
             self.rightMenuViewShowDampingAnimation()
         }
     }
-
+    
+    // MARK: - ****** 重新给动画的图片视图附上图 ******
+    fileprivate func resetAnimationImageView() {
+        if let selectedViewController = self.mainViewController?.selectedViewController as? UINavigationController {
+            DispatchQueue.main.async {
+                self.animationImageView.image = self.getImageWithView(selectedViewController.view)
+            }
+        }
+    }
     
     
     // MARK: - ****** 对View截图 ******
@@ -630,6 +634,7 @@ extension MainViewController : LeftMemuViewControllerDelegate {
     ///
     /// - Parameter index: tag
     func changeContentViewController(withIndex index: NSInteger) {
+        
         panGestureRecognaizer.isEnabled      = false
         animationImageView.frame = contentView!.frame
         view.addSubview(animationImageView)
@@ -639,7 +644,7 @@ extension MainViewController : LeftMemuViewControllerDelegate {
         contentView?.frame.origin = CGPoint(x: 0, y: 0)
         
         if let mainViewController = mainViewController as? ContentTabBarController {
-            mainViewController.selectedIndex = (index == 1) ? 0 :  1
+            mainViewController.selectedIndex = index
         }
         
         UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
@@ -653,7 +658,7 @@ extension MainViewController : LeftMemuViewControllerDelegate {
             self.animationImageView.removeFromSuperview()
             self.leftPanGestureRecognaizer.isEnabled  = true
             self.rightPanGestureRecognaizer.isEnabled = true
-        
+            self.resetAnimationImageView()
         }
     }
     

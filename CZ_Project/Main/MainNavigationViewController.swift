@@ -19,6 +19,11 @@ class MainNavigationViewController: UINavigationController {
         let vc = TextViewController2()
         return vc
     }()
+    
+    lazy var testVC3 : TextViewController3 = {
+        let vc = TextViewController3()
+        return vc
+    }()
 
 
     override func viewDidLoad() {
@@ -26,6 +31,7 @@ class MainNavigationViewController: UINavigationController {
         view.backgroundColor = UIColor.blue
         addChildViewController(testVC1)
         addChildViewController(testVC2)
+        addChildViewController(testVC3)
         setViewControllers([testVC1], animated: false)
     }
 
@@ -44,6 +50,12 @@ class MainNavigationViewController: UINavigationController {
     func showTestVC2() {
         setViewControllers([testVC2], animated: false)
          print(viewControllers.count)
+    }
+    
+    func showTestVC3() {
+        setViewControllers([testVC3], animated: false)
+        print(viewControllers.count)
+        
     }
 
     /*

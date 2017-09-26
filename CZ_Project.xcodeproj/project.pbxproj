@@ -10,8 +10,6 @@
 		F40F81E41F01F73A004117F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40F81E31F01F73A004117F8 /* AppDelegate.swift */; };
 		F40F81EB1F01F73A004117F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F40F81EA1F01F73A004117F8 /* Assets.xcassets */; };
 		F40F81EE1F01F73A004117F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F40F81EC1F01F73A004117F8 /* LaunchScreen.storyboard */; };
-		F40F81F91F01F73A004117F8 /* CZ_ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40F81F81F01F73A004117F8 /* CZ_ProjectTests.swift */; };
-		F40F82041F01F73A004117F8 /* CZ_ProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40F82031F01F73A004117F8 /* CZ_ProjectUITests.swift */; };
 		F40F82131F01F84B004117F8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40F82121F01F84B004117F8 /* MainViewController.swift */; };
 		F40F82151F022091004117F8 /* LeftMemuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40F82141F022091004117F8 /* LeftMemuViewController.swift */; };
 		F40F82191F022464004117F8 /* RightMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40F82181F022464004117F8 /* RightMenuViewController.swift */; };
@@ -20,24 +18,9 @@
 		F44EAC2F1F0E522500AA96EF /* ContentTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44EAC2E1F0E522500AA96EF /* ContentTabBarController.swift */; };
 		F453A5481F063ECF00148695 /* MainNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F453A5471F063ECF00148695 /* MainNavigationViewController.swift */; };
 		F4DFEE181F02605F003221C0 /*  GlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DFEE171F02605F003221C0 /*  GlobalVariable.swift */; };
+		F4F8845D1F7A231C00A2F842 /* TextViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F8845C1F7A231C00A2F842 /* TextViewController3.swift */; };
+		F4F884601F7A316300A2F842 /* SuspensionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F8845F1F7A316300A2F842 /* SuspensionButton.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		F40F81F51F01F73A004117F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F40F81D81F01F73A004117F8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F40F81DF1F01F73A004117F8;
-			remoteInfo = CZ_Project;
-		};
-		F40F82001F01F73A004117F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F40F81D81F01F73A004117F8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F40F81DF1F01F73A004117F8;
-			remoteInfo = CZ_Project;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F40F81E01F01F73A004117F8 /* CZ_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CZ_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,12 +28,6 @@
 		F40F81EA1F01F73A004117F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F40F81ED1F01F73A004117F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F40F81EF1F01F73A004117F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F40F81F41F01F73A004117F8 /* CZ_ProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CZ_ProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F40F81F81F01F73A004117F8 /* CZ_ProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CZ_ProjectTests.swift; sourceTree = "<group>"; };
-		F40F81FA1F01F73A004117F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F40F81FF1F01F73A004117F8 /* CZ_ProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CZ_ProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F40F82031F01F73A004117F8 /* CZ_ProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CZ_ProjectUITests.swift; sourceTree = "<group>"; };
-		F40F82051F01F73A004117F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F40F82121F01F84B004117F8 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F40F82141F022091004117F8 /* LeftMemuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMemuViewController.swift; sourceTree = "<group>"; };
 		F40F82181F022464004117F8 /* RightMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightMenuViewController.swift; sourceTree = "<group>"; };
@@ -59,24 +36,12 @@
 		F44EAC2E1F0E522500AA96EF /* ContentTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentTabBarController.swift; sourceTree = "<group>"; };
 		F453A5471F063ECF00148695 /* MainNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationViewController.swift; sourceTree = "<group>"; };
 		F4DFEE171F02605F003221C0 /*  GlobalVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = " GlobalVariable.swift"; sourceTree = "<group>"; };
+		F4F8845C1F7A231C00A2F842 /* TextViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController3.swift; sourceTree = "<group>"; };
+		F4F8845F1F7A316300A2F842 /* SuspensionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuspensionButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F40F81DD1F01F73A004117F8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F40F81F11F01F73A004117F8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F40F81FC1F01F73A004117F8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -90,8 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				F40F81E21F01F73A004117F8 /* CZ_Project */,
-				F40F81F71F01F73A004117F8 /* CZ_ProjectTests */,
-				F40F82021F01F73A004117F8 /* CZ_ProjectUITests */,
 				F40F81E11F01F73A004117F8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,8 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				F40F81E01F01F73A004117F8 /* CZ_Project.app */,
-				F40F81F41F01F73A004117F8 /* CZ_ProjectTests.xctest */,
-				F40F81FF1F01F73A004117F8 /* CZ_ProjectUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,27 +80,10 @@
 			path = CZ_Project;
 			sourceTree = "<group>";
 		};
-		F40F81F71F01F73A004117F8 /* CZ_ProjectTests */ = {
-			isa = PBXGroup;
-			children = (
-				F40F81F81F01F73A004117F8 /* CZ_ProjectTests.swift */,
-				F40F81FA1F01F73A004117F8 /* Info.plist */,
-			);
-			path = CZ_ProjectTests;
-			sourceTree = "<group>";
-		};
-		F40F82021F01F73A004117F8 /* CZ_ProjectUITests */ = {
-			isa = PBXGroup;
-			children = (
-				F40F82031F01F73A004117F8 /* CZ_ProjectUITests.swift */,
-				F40F82051F01F73A004117F8 /* Info.plist */,
-			);
-			path = CZ_ProjectUITests;
-			sourceTree = "<group>";
-		};
 		F40F82111F01F81E004117F8 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				F4F8845E1F7A314400A2F842 /* View */,
 				F476462D1F04DF30008B4EBF /* Controller */,
 			);
 			path = Main;
@@ -155,8 +99,17 @@
 				F40F82121F01F84B004117F8 /* MainViewController.swift */,
 				F44EAC2A1F0E1FD900AA96EF /* TestViewController1.swift */,
 				F44EAC2C1F0E1FE900AA96EF /* TextViewController2.swift */,
+				F4F8845C1F7A231C00A2F842 /* TextViewController3.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		F4F8845E1F7A314400A2F842 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F4F8845F1F7A316300A2F842 /* SuspensionButton.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,42 +132,6 @@
 			productReference = F40F81E01F01F73A004117F8 /* CZ_Project.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F40F81F31F01F73A004117F8 /* CZ_ProjectTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F40F820B1F01F73A004117F8 /* Build configuration list for PBXNativeTarget "CZ_ProjectTests" */;
-			buildPhases = (
-				F40F81F01F01F73A004117F8 /* Sources */,
-				F40F81F11F01F73A004117F8 /* Frameworks */,
-				F40F81F21F01F73A004117F8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F40F81F61F01F73A004117F8 /* PBXTargetDependency */,
-			);
-			name = CZ_ProjectTests;
-			productName = CZ_ProjectTests;
-			productReference = F40F81F41F01F73A004117F8 /* CZ_ProjectTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		F40F81FE1F01F73A004117F8 /* CZ_ProjectUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F40F820E1F01F73A004117F8 /* Build configuration list for PBXNativeTarget "CZ_ProjectUITests" */;
-			buildPhases = (
-				F40F81FB1F01F73A004117F8 /* Sources */,
-				F40F81FC1F01F73A004117F8 /* Frameworks */,
-				F40F81FD1F01F73A004117F8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F40F82011F01F73A004117F8 /* PBXTargetDependency */,
-			);
-			name = CZ_ProjectUITests;
-			productName = CZ_ProjectUITests;
-			productReference = F40F81FF1F01F73A004117F8 /* CZ_ProjectUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -222,25 +139,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = zol;
 				TargetAttributes = {
 					F40F81DF1F01F73A004117F8 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = 2G3MRL39LG;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
-					};
-					F40F81F31F01F73A004117F8 = {
-						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 2G3MRL39LG;
-						ProvisioningStyle = Automatic;
-						TestTargetID = F40F81DF1F01F73A004117F8;
-					};
-					F40F81FE1F01F73A004117F8 = {
-						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 2G3MRL39LG;
-						ProvisioningStyle = Automatic;
-						TestTargetID = F40F81DF1F01F73A004117F8;
 					};
 				};
 			};
@@ -258,8 +164,6 @@
 			projectRoot = "";
 			targets = (
 				F40F81DF1F01F73A004117F8 /* CZ_Project */,
-				F40F81F31F01F73A004117F8 /* CZ_ProjectTests */,
-				F40F81FE1F01F73A004117F8 /* CZ_ProjectUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -271,20 +175,6 @@
 			files = (
 				F40F81EE1F01F73A004117F8 /* LaunchScreen.storyboard in Resources */,
 				F40F81EB1F01F73A004117F8 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F40F81F21F01F73A004117F8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F40F81FD1F01F73A004117F8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,43 +190,16 @@
 				F44EAC2D1F0E1FE900AA96EF /* TextViewController2.swift in Sources */,
 				F40F82151F022091004117F8 /* LeftMemuViewController.swift in Sources */,
 				F40F81E41F01F73A004117F8 /* AppDelegate.swift in Sources */,
+				F4F8845D1F7A231C00A2F842 /* TextViewController3.swift in Sources */,
 				F44EAC2F1F0E522500AA96EF /* ContentTabBarController.swift in Sources */,
 				F40F82191F022464004117F8 /* RightMenuViewController.swift in Sources */,
 				F44EAC2B1F0E1FDA00AA96EF /* TestViewController1.swift in Sources */,
+				F4F884601F7A316300A2F842 /* SuspensionButton.swift in Sources */,
 				F40F82131F01F84B004117F8 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F40F81F01F01F73A004117F8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F40F81F91F01F73A004117F8 /* CZ_ProjectTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F40F81FB1F01F73A004117F8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F40F82041F01F73A004117F8 /* CZ_ProjectUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F40F81F61F01F73A004117F8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F40F81DF1F01F73A004117F8 /* CZ_Project */;
-			targetProxy = F40F81F51F01F73A004117F8 /* PBXContainerItemProxy */;
-		};
-		F40F82011F01F73A004117F8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F40F81DF1F01F73A004117F8 /* CZ_Project */;
-			targetProxy = F40F82001F01F73A004117F8 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F40F81EC1F01F73A004117F8 /* LaunchScreen.storyboard */ = {
@@ -360,7 +223,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -368,7 +233,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -411,7 +280,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -419,7 +290,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -477,64 +352,6 @@
 			};
 			name = Release;
 		};
-		F40F820C1F01F73A004117F8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 2G3MRL39LG;
-				INFOPLIST_FILE = CZ_ProjectTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cz.CZ-ProjectTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CZ_Project.app/CZ_Project";
-			};
-			name = Debug;
-		};
-		F40F820D1F01F73A004117F8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 2G3MRL39LG;
-				INFOPLIST_FILE = CZ_ProjectTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cz.CZ-ProjectTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CZ_Project.app/CZ_Project";
-			};
-			name = Release;
-		};
-		F40F820F1F01F73A004117F8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 2G3MRL39LG;
-				INFOPLIST_FILE = CZ_ProjectUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cz.CZ-ProjectUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = CZ_Project;
-			};
-			name = Debug;
-		};
-		F40F82101F01F73A004117F8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 2G3MRL39LG;
-				INFOPLIST_FILE = CZ_ProjectUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cz.CZ-ProjectUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = CZ_Project;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -552,24 +369,6 @@
 			buildConfigurations = (
 				F40F82091F01F73A004117F8 /* Debug */,
 				F40F820A1F01F73A004117F8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F40F820B1F01F73A004117F8 /* Build configuration list for PBXNativeTarget "CZ_ProjectTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F40F820C1F01F73A004117F8 /* Debug */,
-				F40F820D1F01F73A004117F8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F40F820E1F01F73A004117F8 /* Build configuration list for PBXNativeTarget "CZ_ProjectUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F40F820F1F01F73A004117F8 /* Debug */,
-				F40F82101F01F73A004117F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -12,8 +12,8 @@ class TestViewController1: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let imageView = UIImageView(image: UIImage(named: "gundam2"))
+        title = "gundam3"
+        let imageView = UIImageView(image: UIImage(named: "gundam3"))
         imageView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         view.addSubview(imageView)
         tabBarItem.title = "1"

@@ -23,11 +23,17 @@ class ContentTabBarController: UITabBarController {
         return vc
     }()
     
+    lazy var testVC3 : UINavigationController = {
+        let vc = UINavigationController(rootViewController: TextViewController3())
+        return vc
+    }()
+    
+    
 // MARK: - ****** 构造方法 ******
     init() {
         super.init(nibName: nil, bundle: nil)
         //设置子视图
-        setViewControllers([testVC1, testVC2], animated: false)
+        setViewControllers([testVC1, testVC2, testVC3], animated: false)
         
         //隐藏tabBar
         tabBar.isHidden = true
@@ -47,7 +53,7 @@ class ContentTabBarController: UITabBarController {
 // MARK: - ****** 公有方法 ******
     /// 设置子视图
     func setChildViewController() {
-        setViewControllers([testVC1, testVC2], animated: false)
+        setViewControllers([testVC1, testVC2, testVC3], animated: false)
     }
     
    
