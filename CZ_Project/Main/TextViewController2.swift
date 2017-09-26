@@ -14,11 +14,12 @@ class TextViewController2: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blue
-        let imageView = UIImageView(image: UIImage(named: "gandam3"))
+        let imageView = UIImageView(image: UIImage(named: "gundam4"))
         imageView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         view.addSubview(imageView)
         tabBarItem.title = "2"
-        
+        edgesForExtendedLayout = UIRectEdge()
+        navigationController?.navigationBar.isTranslucent = false
     }
     
     override func didReceiveMemoryWarning() {

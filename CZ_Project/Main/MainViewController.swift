@@ -69,7 +69,9 @@ extension MainViewController {
 
         //给动画的图片视图附上图片
         if let  selectedViewController = mainViewController?.selectedViewController as? UINavigationController {
-            animationImageView.image = getImageWithView(selectedViewController.view)
+            DispatchQueue.main.async {
+                self.animationImageView.image = self.getImageWithView(selectedViewController.view)
+            }
         }
         
         
@@ -640,19 +642,19 @@ extension MainViewController : LeftMemuViewControllerDelegate {
             mainViewController.selectedIndex = (index == 1) ? 0 :  1
         }
         
-//        UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: { 
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
         
-//            self.leftMenuView?.frame.origin.x      = -CZ_ScreenWidth
-//            self.animationImageView.frame.origin.x = CZ_ScreenWidth
-//            
-//        }){ (Bool) in
-//            self.leftMenuView?.frame.origin = CGPoint(x: leftMenuViewX, y: 0)
-//            self.view.sendSubview(toBack: self.leftMenuView!)
-//            self.animationImageView.removeFromSuperview()
-//            self.leftPanGestureRecognaizer.isEnabled  = true
-//            self.rightPanGestureRecognaizer.isEnabled = true
-//        
-//        }
+            self.leftMenuView?.frame.origin.x      = -CZ_ScreenWidth
+            self.animationImageView.frame.origin.x = CZ_ScreenWidth
+            
+        }){ (Bool) in
+            self.leftMenuView?.frame.origin = CGPoint(x: leftMenuViewX, y: 0)
+            self.view.sendSubview(toBack: self.leftMenuView!)
+            self.animationImageView.removeFromSuperview()
+            self.leftPanGestureRecognaizer.isEnabled  = true
+            self.rightPanGestureRecognaizer.isEnabled = true
+        
+        }
     }
     
 }
