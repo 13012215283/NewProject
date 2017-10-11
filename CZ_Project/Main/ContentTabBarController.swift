@@ -19,7 +19,7 @@ class ContentTabBarController: UITabBarController {
     }()
     
     lazy var testVC2 : UINavigationController = {
-        let vc = UINavigationController(rootViewController: TextViewController2())
+        let vc = UINavigationController(rootViewController: TestViewController2())
         return vc
     }()
     

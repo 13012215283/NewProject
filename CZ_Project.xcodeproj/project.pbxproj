@@ -14,9 +14,12 @@
 		F40F82151F022091004117F8 /* LeftMemuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40F82141F022091004117F8 /* LeftMemuViewController.swift */; };
 		F40F82191F022464004117F8 /* RightMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40F82181F022464004117F8 /* RightMenuViewController.swift */; };
 		F44EAC2B1F0E1FDA00AA96EF /* TestViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44EAC2A1F0E1FD900AA96EF /* TestViewController1.swift */; };
-		F44EAC2D1F0E1FE900AA96EF /* TextViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44EAC2C1F0E1FE900AA96EF /* TextViewController2.swift */; };
 		F44EAC2F1F0E522500AA96EF /* ContentTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44EAC2E1F0E522500AA96EF /* ContentTabBarController.swift */; };
 		F453A5481F063ECF00148695 /* MainNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F453A5471F063ECF00148695 /* MainNavigationViewController.swift */; };
+		F472CE2E1F8E1A440036D33A /* PageScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F472CE2B1F8E1A440036D33A /* PageScrollViewController.swift */; };
+		F472CE2F1F8E1A440036D33A /* PageScrollViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F472CE2C1F8E1A440036D33A /* PageScrollViewManager.swift */; };
+		F472CE301F8E1A440036D33A /* TitlesScrollBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F472CE2D1F8E1A440036D33A /* TitlesScrollBar.swift */; };
+		F472CE321F8E1A770036D33A /* TestViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F472CE311F8E1A770036D33A /* TestViewController2.swift */; };
 		F4DFEE181F02605F003221C0 /*  GlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DFEE171F02605F003221C0 /*  GlobalVariable.swift */; };
 		F4F8845D1F7A231C00A2F842 /* TextViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F8845C1F7A231C00A2F842 /* TextViewController3.swift */; };
 		F4F884601F7A316300A2F842 /* SuspensionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F8845F1F7A316300A2F842 /* SuspensionButton.swift */; };
@@ -32,9 +35,12 @@
 		F40F82141F022091004117F8 /* LeftMemuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMemuViewController.swift; sourceTree = "<group>"; };
 		F40F82181F022464004117F8 /* RightMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightMenuViewController.swift; sourceTree = "<group>"; };
 		F44EAC2A1F0E1FD900AA96EF /* TestViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController1.swift; sourceTree = "<group>"; };
-		F44EAC2C1F0E1FE900AA96EF /* TextViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController2.swift; sourceTree = "<group>"; };
 		F44EAC2E1F0E522500AA96EF /* ContentTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentTabBarController.swift; sourceTree = "<group>"; };
 		F453A5471F063ECF00148695 /* MainNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationViewController.swift; sourceTree = "<group>"; };
+		F472CE2B1F8E1A440036D33A /* PageScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageScrollViewController.swift; sourceTree = "<group>"; };
+		F472CE2C1F8E1A440036D33A /* PageScrollViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageScrollViewManager.swift; sourceTree = "<group>"; };
+		F472CE2D1F8E1A440036D33A /* TitlesScrollBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitlesScrollBar.swift; sourceTree = "<group>"; };
+		F472CE311F8E1A770036D33A /* TestViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController2.swift; sourceTree = "<group>"; };
 		F4DFEE171F02605F003221C0 /*  GlobalVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = " GlobalVariable.swift"; sourceTree = "<group>"; };
 		F4F8845C1F7A231C00A2F842 /* TextViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController3.swift; sourceTree = "<group>"; };
 		F4F8845F1F7A316300A2F842 /* SuspensionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuspensionButton.swift; sourceTree = "<group>"; };
@@ -71,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				F40F82111F01F81E004117F8 /* Main */,
+				F472CE2A1F8E1A440036D33A /* PageViewController */,
 				F40F81E31F01F73A004117F8 /* AppDelegate.swift */,
 				F40F81EA1F01F73A004117F8 /* Assets.xcassets */,
 				F40F81EC1F01F73A004117F8 /* LaunchScreen.storyboard */,
@@ -89,6 +96,16 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		F472CE2A1F8E1A440036D33A /* PageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F472CE2B1F8E1A440036D33A /* PageScrollViewController.swift */,
+				F472CE2C1F8E1A440036D33A /* PageScrollViewManager.swift */,
+				F472CE2D1F8E1A440036D33A /* TitlesScrollBar.swift */,
+			);
+			path = PageViewController;
+			sourceTree = "<group>";
+		};
 		F476462D1F04DF30008B4EBF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,7 +115,7 @@
 				F40F82181F022464004117F8 /* RightMenuViewController.swift */,
 				F40F82121F01F84B004117F8 /* MainViewController.swift */,
 				F44EAC2A1F0E1FD900AA96EF /* TestViewController1.swift */,
-				F44EAC2C1F0E1FE900AA96EF /* TextViewController2.swift */,
+				F472CE311F8E1A770036D33A /* TestViewController2.swift */,
 				F4F8845C1F7A231C00A2F842 /* TextViewController3.swift */,
 			);
 			name = Controller;
@@ -187,9 +204,12 @@
 			files = (
 				F4DFEE181F02605F003221C0 /*  GlobalVariable.swift in Sources */,
 				F453A5481F063ECF00148695 /* MainNavigationViewController.swift in Sources */,
-				F44EAC2D1F0E1FE900AA96EF /* TextViewController2.swift in Sources */,
 				F40F82151F022091004117F8 /* LeftMemuViewController.swift in Sources */,
+				F472CE301F8E1A440036D33A /* TitlesScrollBar.swift in Sources */,
 				F40F81E41F01F73A004117F8 /* AppDelegate.swift in Sources */,
+				F472CE2F1F8E1A440036D33A /* PageScrollViewManager.swift in Sources */,
+				F472CE2E1F8E1A440036D33A /* PageScrollViewController.swift in Sources */,
+				F472CE321F8E1A770036D33A /* TestViewController2.swift in Sources */,
 				F4F8845D1F7A231C00A2F842 /* TextViewController3.swift in Sources */,
 				F44EAC2F1F0E522500AA96EF /* ContentTabBarController.swift in Sources */,
 				F40F82191F022464004117F8 /* RightMenuViewController.swift in Sources */,

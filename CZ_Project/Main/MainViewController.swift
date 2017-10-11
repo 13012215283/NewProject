@@ -225,10 +225,7 @@ class MainViewController: UIViewController,UIGestureRecognizerDelegate {
 
 
     }
-
-    
-    // MARK: 手势处理方法
-    
+  
     /// 左边界手势处理
     ///
     /// - Parameter leftEdgeGesture: 手势

@@ -15,8 +15,8 @@ class MainNavigationViewController: UINavigationController {
         return vc
     }()
     
-    lazy var testVC2 : TextViewController2 = {
-        let vc = TextViewController2()
+    lazy var testVC2 : TestViewController2 = {
+        let vc = TestViewController2()
         return vc
     }()
     
